@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Zdarzenie click</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function() {
+      $("#kwadrat").click(function(){
+        $("#komunikat").append("czesc");
+        $("#kwadrat").css("background-color","red");
+      })
+      $("#resetuj").click(function(){
+        $("#kwadrat").css("background-color","lightgray");
+        $("#komunikat").empty();
+      })
+    });
+  </script>
+  <style>
+    #kwadrat { width: 150px; height: 150px; background: lightgray; }
+  </style>
+</head>
+<body>
+  <button id="przywitaj">Przywitaj się</button>
+    <button id="resetuj">Przywitaj się</button>
+  <p id="komunikat"></p>
+ 
+  <div id="kwadrat"></div>
+ 
+  <script>
+    $(function() {
+      
+    });
+  </script>
+</body>
+</html>
