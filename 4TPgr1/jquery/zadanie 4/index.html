@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Zdarzenie click</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function() {
+    let $i = 0;    
+      $("#div").click(function(){
+        $i++
+        $("#paragraf").empty()
+        $("#paragraf").append("Klikneto " + $i + " razy")
+      })
+
+      $("#naKoniec").click(function(){
+        let $produkt = $("#produkt").val()
+        if($produkt.lenght > 0) {
+          $("#lista").append("<li>" + $produkt + "</li>")
+          $("li").last().css({
+            "color": "blue",
+            "font-weight": "bold"
+          })
+          $("#produkt").val("")
+        }
+      })
+      $("#naPoczatek").click(function(){
+        let $produkt = $("#produkt").val()
+        if($produkt.lenght > 0) {
+          $("#lista").prepend("<li>" + $produkt + "</li>")
+          $("li").first().css({
+            "color": "green",
+            "font-weight": "bold"
+          })
+          $("#produkt").val("")
+        }
+      })
+    });
+  </script>
+  <style>
+    #div { width: 200px; height: 200px; background: red; }
+  </style>
+</head>
+<body>
+  
+    <div id="div">
+
+    </div>
+    <p id="paragraf">
+
+    </p>
+
+    <ul id="lista">
+      <li>Chleb</li>
+      <li>Mleko</li>
+    </ul>
+    <input type="text" id="produkt" placeholder="Nazwa produktu">
+    <button id="naKoniec">Dodaj na koniec</button>
+    <button id="naPoczatek">Dodaj na początek</button>
+
+</body>
+</html>
