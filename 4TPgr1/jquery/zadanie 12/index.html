@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" 
+    crossorigin="anonymous">
+    </script>
+    <script>
+        $(function(){
+            $("#color").change(function(){
+                $("body").css("background-color", $(this).val())
+            })
+            $("#pizza").change(function(){
+                $("#return").text("Do zapłaty za pizzę: " + $(this).val() + " zł")
+            })
+
+            $("#newsletter").change(function(){
+                if($(this).is(":checked")){
+                    $("#stan").text("Zapisano do newsletter")
+                } else {
+                    $("#stan").text("Wypisano z newsletter")
+                }
+            })
+            $("#rejestracja").prop("disabled", true)
+
+            $("#akceptuje").change(function(){
+                if($(this).is(":checked")){
+                    $("#rejestracja").prop("disabled", false)
+                } else {
+                    $("#rejestracja").prop("disabled", true)
+                }
+            })
+
+            $("#tekst").on("input", function(){
+                $("#podglad").text($(this).val())
+            })
+            $("#tekstarea").on("input", function(){
+                let charleft = 100 - $(this).val().length
+                $("#licznik").text(charleft)
+
+                if(charleft < 10) {
+                    $("#licznik").css("color", "red")
+                } else {
+                    $("#licznik").css("color","black")
+                }
+            })
+        })
+        
+    </script>
+</head>
+<body>
+    <select id="color">
+        <option value="white">Biały</option>
+        <option value="yellow">Żółty</option>
+        <option value="lightblue">Niebieski</option>
+    </select>
+
+    <select id="pizza">
+        <option value="20">Mała</option>
+        <option value="30">Średnia</option>
+        <option value="40">Duża</option>
+    </select>
+
+    <p id="return"></p>
+
+    <input type="checkbox" id="newsletter"> Chcę newsletter
+    <p id="stan"></p>
+
+    <input type="checkbox" id="akceptuje"> Akceptuję regulamin
+    <button id="rejestracja">Zarejestruj</button>
+
+    <input type="text" id="tekst">
+    <p>Podgląd: <span id="podglad"></span></p>
+
+    <textarea id="tekstarea"></textarea>
+
+</body>
+</html>
