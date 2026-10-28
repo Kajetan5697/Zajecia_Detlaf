@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" 
+    crossorigin="anonymous">
+    </script>
+    <script>
+        $(function(){
+            
+            $(document).on("keydown", function(){
+
+                if (event.key === "Enter") {
+                    let szukana = $("#szukaj").val().trim()
+
+                    if (szukana != "") {
+                        $("#wynik").text("Szukam: " + szukana)
+                    }else {
+                        $("#wynik").text("Wpisz frazę!")
+                        $("#wynik").css("color", "red")
+                    }
+                }
+
+                if (event.key === "Escape") {
+                    $("#szukaj").val(" ")
+                    $("#wynik").text(" ")
+                }
+
+                let pass = $("#haslo").val()
+
+                if (pass.lenght < 6) {
+                    $("#sila").text("Słabe")
+                    $("#sila").removeClass()
+                    $("#sila").addClass("slabe")
+                }else if (6 <= pass.lenght && pass.lenght <= 9) {
+                    $("#sila").text("Średnie")
+                    $("#sila").removeClass()
+                    $("#sila").addClass("srednie")
+                }else {
+                    $("#sila").text("Silne")
+                    $("#sila").removeClass()
+                    $("#sila").addClass("silne")
+                }
+
+            })
+
+            $("#logowanie").submit(function(e){
+                e.preventDefault()
+                let login = $("#login").val().trim()
+                let haslo = $("#pass").val().trim()
+
+                if(login === "") {
+                    $("#info").text("Podaj login").css("color", "black")
+                }else if(haslo.lenght < 6) {
+                    $("#info").text("haslo jest za krotkie").css("color","black")
+                }else {
+                    $("#info").text("Witaj " + login + "!").css("color","green")
+                }
+            })
+
+        })
+        
+    </script>
+
+    <style>
+        .slabe {
+            background-color: red;
+        }
+        .srednie {
+            background-color: orange;
+        }
+        .silne {
+            background-color: green;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input type="text" id="szukaj" placeholder="Szukaj...">
+    <p id="wynik"></p>
+
+    <input type="password" id="haslo">
+    <p id="sila"></p>
+
+
+    <form id="logowanie">
+    <input type="text" id="login" placeholder="Login">
+    <input type="password" id="pass" placeholder="Hasło">
+    <button type="submit">Zaloguj</button>
+    </form>
+    <p id="info"></p>
+    
+</body>
+</html>
